@@ -31,10 +31,14 @@
                                 echo "Error al realizar sequencia";
                             }
                             if (isset($_POST["submit"])) {
+                                
+                                if ( isset( $_POST['enabled'])){
+                                 $enabled = 1; }
+                                else {
+                                $enabled = 0; }
                                 $imagename =  $_POST['image-name'];
                                 $text =  $_POST['image-text'];
-                                 $enabled = 1;
-                                //move_uploaded_file( $_FILES["image"]["tmp_name"], "../../images/" . $_FILES["image"]["name"]);
+                                move_uploaded_file( $_FILES["image"]["tmp_name"], "../../imagesuser/" . $_FILES["image"]["name"]);
                                 
                                 $fichero = $_FILES["image"]["name"];
                                 $size = $_FILES["image"]["size"];
@@ -48,6 +52,7 @@
                     <input class="input" type="text" placeholder="Name" name="image-name" required/>
                     <input class="input" type="file" name="image" id="image" required accept="image/*"/>
                     <input class="input" type="text" placeholder="Text" name="image-text" required/>
+                    <label for="enabled">Enabled <input type="checkbox" name="enabled" id="enabled"></label>
                     <?php
                           
                     ?>
