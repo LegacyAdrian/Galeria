@@ -38,13 +38,16 @@
                                 $enabled = 0; }
                                 $imagename =  $_POST['image-name'];
                                 $text =  $_POST['image-text'];
+                                try{
                                 move_uploaded_file( $_FILES["image"]["tmp_name"], "../../imagesuser/" . $_FILES["image"]["name"]);
                                 
                                 $fichero = $_FILES["image"]["name"];
                                 $size = $_FILES["image"]["size"];
                                 
                                 $stmt1 = $link->exec("INSERT into images( author_id, name, file, size, text, enabled) values( ".$id.", '".$imagename."', '".$fichero."', '".$size."', '".$text."', ".$enabled.")");
-                                
+                               
+                            }
+                                catch(Exception $e){echo "Se ha producido el siguiente error: " . $e->getMessage();}
                                  }
                         }
                     ?>
